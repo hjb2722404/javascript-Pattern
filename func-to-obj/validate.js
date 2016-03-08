@@ -17,7 +17,7 @@ function checkForm(){
 function checkName(){
     var name = document.getElementById("name").value;
     if(!name){
-        alert("请输入正确的密码");
+        alert("请输入正确的用户名");
         return false;
     }
 }
@@ -33,7 +33,7 @@ function checkEmail(){
 function checkPwd(){
     var pwd = document.getElementById("pwd").value;
     if(!pwd){
-        alert("请输入正确的邮箱");
+        alert("请输入正确的密码");
         return false;
     }
 }
