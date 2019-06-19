@@ -11,18 +11,16 @@ var Book = (function(){
     function checkBook(name){
         console.log(name);
     }
-    //返回构造函数
-    return function(newId,newName,newPrice){
 
+    //创建类
+    function _book(newId,newName,newPrice){
         //私有变量
         var name,price;
-
         //私有方法
         function checkId(){
             console.log('checkid');
         }
-
-        //特权方法
+       //特权方法
         this.getName = function(){
             return name;
         };
@@ -59,18 +57,20 @@ var Book = (function(){
         //构造器
         this.setName(newName);
         this.setPrice(newPrice);
-    };
-})();
-
-Book.prototype = {
-    //公有属性
-    isJSBook : false,
-    //公有方法
-    display : function(){
-        console.log("display");
     }
+    _book.prototype = {
 
-};
+        //jingtai 公有属性
+        isJSBook : false,
+
+        display : function(){
+            console.log("display");
+        }
+
+    };
+    //返回类
+    return _book;
+})();
 
 var b = new Book(11,'jsbook',30);
 

@@ -5,10 +5,8 @@
 //组合继承：
 
 /*
-综合两种继承方式的有点，过滤掉缺点
-缺点：
-
-父类构造函数执行了两遍
+综合两种继承方式的优点，过滤掉缺点
+缺点：父类构造函数执行了两遍
 * */
 
 
@@ -16,7 +14,6 @@
 function SuperClass(name){
     //值类型共有属性
     this.name = name;
-
     //引用类型共有属性
     this.books = ['java','html','css'];
 }
@@ -48,13 +45,10 @@ SubClass.prototype.getTime = function () {
 var instance1 = new SubClass('js',2014);
 
 instance1.books.push('js partern');
-
-console.log(instance1.books);
-
-instance1.getName();
-instance1.getTime();
-
 var instance2 = new SubClass("css",2013);
-console.log(instance2.books);
-instance2.getName();
-instance2.getTime();
+console.log(instance1.books); // [ 'java', 'html', 'css', 'js partern' ]  
+console.log(instance2.books);//[ 'java', 'html', 'css' ] 由于使用了构造函数继承，利用this复制了共有属性，所以引用类型的修改不会影响其他实例
+instance1.getName(); //js //继承了父类原型上的方法
+instance1.getTime(); // 2014 // 子类自己原型上的方法，实例借以访问自身的属性
+instance2.getName(); //css
+instance2.getTime(); // 2013
