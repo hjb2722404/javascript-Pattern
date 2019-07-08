@@ -44,7 +44,7 @@
         this.g(id)[key] = value;
     },
    
-     htmlm : function(id, value){
+     html : function(id, value){
         this.g(id).innerHTML = value;
     },
    
