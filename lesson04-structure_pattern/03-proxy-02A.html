@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>代理模板X域A页面</title>
+</head>
+<body>
+    <script type="text/JavaScript">
+        function callback(data) {
+            console.log('成功接收数据',data);
+        }    
+    </script>
+    <iframe src="" name="proxyIframe" id="proxyIframe" frameborder="0"></iframe>
+    <form action="./03-proxy-02.php" method="post" target="proxyIframe">
+        <input type="text" name="callback" value="callback">
+        <input type="text" name="proxy" value="./03-proxy-02B.html">
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

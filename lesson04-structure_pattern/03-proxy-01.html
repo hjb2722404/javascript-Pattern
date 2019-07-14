@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSONP实现原理</title>
+</head>
+<body>
+    <script>
+        function jsonpCallBack(res,req){
+            console.log(res,req);
+        }
+    </script>
+    <script type="text/Javascript" src="./03-proxy-01.php?callback=jsonpCallBack&data=getJsonPdata"></script>
+</body>
+</html>
