@@ -50,11 +50,6 @@
 }
 A.fn.init.prototype = A.fn;
 
-console.log(A('demo'));
-console.log(A('#test'));
-console.log(A('p'));
-console.log(A('p').size());
-
 // 对象拓展
 
 A.extend = A.fn.extend = function(){
@@ -88,4 +83,5 @@ A.extend = A.fn.extend = function(){
 
 // 拓展一个对象
 
-var demo = A.extend({first});
+var demo = A.extend({first:1},{second:2},{third:3});
+console.log(demo);
