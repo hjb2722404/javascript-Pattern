@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="btn_container">
+        <button id="btn">demo</button>
+    </div>
+    <script type="text/JavaScript" >
+        var g = function(id){
+            return document.getElementById(id)
+        }
+        g('btn').onclick = function(){
+            g('btn').onclick = null; // 解决内存泄露问题
+            g('btn_container').innerHTML = '触发了事件';
+        }
+
+        // 委托模式解决内存泄露
+        g('btn_container').onclick = function(e){
+            var target = e && e.target || window.event.srcElement;
+            if(target.id === 'btn'){
+                g('btn_container').innerHTML = "触发了事件";
+            }
+        }
+    </script>
+</body>
+</html>
