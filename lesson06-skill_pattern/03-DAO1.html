@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据访问对象模式</title>
+</head>
+<body>
+    
+    <script type="text/JavaScript" src="./03-DAO-1.js"></script>
+    <script>
+        var LS = new BaseLocalStorage('LS_');
+        LS.set('a','xiaoming',function(){console.log(arguments);});
+        LS.get('a',function(){console.log(arguments);});
+        // LS.remove('a',function(){console.log(arguments);});
+        // LS.remove('a',function(){console.log(arguments);});
+        // LS.get('a',function(){console.log(arguments);});
+    </script>
+</body>
+</html>
