@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>节流应用-图片延迟加载</title>
+</head>
+<body>
+    <div id="container">
+        <ul>
+            <li><img src="img/weibo.jpg" alt="" data-src="img/weixin.jpeg"></li>
+            <li><img src="img/weibo.jpg" alt="" data-src="img/weixin.jpeg"></li>
+            <li><img src="img/weibo.jpg" alt="" data-src="img/weixin.jpeg"></li>
+            <li><img src="img/weibo.jpg" alt="" data-src="img/weixin.jpeg"></li>
+            <li><img src="img/weibo.jpg" alt="" data-src="img/weixin.jpeg"></li>
+            <li><img src="img/weibo.jpg" alt="" data-src="img/weixin.jpeg"></li>
+            <li><img src="img/weibo.jpg" alt="" data-src="img/weixin.jpeg"></li>
+            <li><img src="img/weibo.jpg" alt="" data-src="img/weixin.jpeg"></li>
+            <li><img src="img/weibo.jpg" alt="" data-src="img/weixin.jpeg"></li>
+            <li><img src="img/weibo.jpg" alt="" data-src="img/weixin.jpeg"></li>
+        </ul>
+    </div>
+    
+    <script type="text/JavaScript" src="./04-throttler-1.js"></script>
+    <script type="text/JavaScript">
+    /**
+     *  节流延迟加载图片类
+     *  param id 延迟加载图片的容器
+     *  注意：图片节点如下 <img src="img/loading.gif" alt ="" data-src="img/1.jpg">
+     * */
+        function LazyLoad(id){
+            // 获取需要节流延迟加载图片的容器id
+            this.container = document.getElementById(id);
+            // 缓存图片
+            this.imgs = this.getImgs();
+            // 执行逻辑
+            this.init();
+        }
+        LazyLoad.prototype = {
+            // 执行入口
+            init: function(){
+                // 加载当前视图图片
+                this.update();
+                // 绑定事件
+                this.bindEvent();
+            },
+            // 获取延迟加载图片
+            getImgs: function(){
+                // 图片数组容器
+                var arr = [];
+                // 获取容器内的图片
+                var imgs = this.container.getElementsByTagName("img");
+                // 将获取的图片转换为数组（IE下通过Array.prototype.slice 转换会报错，故采用for循环来进行转换）
+                for(var i = 0; i < imgs.length; i++){
+                    arr.push(imgs[i])
+                }
+                return arr;
+            },
+            // 加载图片
+            update: function(){
+                // 如果图片都加载完成，返回
+                if(!this.imgs.length){
+                    return;
+                }
+                // 获取图片数组长度
+                var i = this.imgs.length; 
+                // 遍历图片
+                for(--i;i>=0;i--){
+                    // 如果图片在可是范围内
+                    if(this.shouldShow(i)){
+                        // 加载图片
+                        this.imgs[i].src = this.imgs[i].getAttribute('data-src');
+                        // 清除缓存中的此图片
+                        this.imgs.splice(i,1);
+                    }
+                }
+            },
+            // 判断图片是否在可视范围内
+            shouldShow: function(i){
+                    // 获取当前图片
+                var img = this.imgs[i],
+                    // 可视范围内顶部高度（页面滚动条的top值）
+                    scrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+                    // 可视范围内底部高度
+                    scrollBottom = scrollTop + document.documentElement.clientHeight,
+                    // 图片的顶部位置
+                    imgTop = this.pageY(img),
+                    // 图片的底部位置
+                    imgBottom = imgTop + img.offsetHeight;
+                // 判断图片是否在可视范围内：
+                //    图片底部高度大于可视视图顶部高度并且图片底部高度小于可视视图底部高度
+                // 或者 图片顶部高度大于可视视图顶部高度并且图片顶部高度小于可视视图底部高度
+                if(imgBottom > scrollTop && imgBottom < scrollBottom || (imgTop > scrollTop && imgTop < scrollBottom)){
+                    return true;
+                }
+                // 不满足以上条件则返回 false
+                return false;
+
+            },
+            // 获取元素在页面中的纵坐标位置
+            pageY: function(element){
+                // 如果元素有父元素
+                if(element.offsetParent){
+                    // 返回元素+父元素高度
+                    return element.offsetTop + this.pageY(element.offsetParent);
+                }else{
+                    // 否则返回元素高度
+                    return element.offsetTop;
+                }
+            },
+            // 绑定事件
+            on: function(ele,type,fn){
+                ele.addEventListener ? ele.addEventListener(type,fn,false) : ele.attachEvent('on'+type,fn,false);
+            },
+            // 为窗口绑定 resize 事件与 scroll 事件
+            bindEvent: function(){
+                var that = this;
+                this.on(window,'resize',function(){
+                    throttle(that.update,{context:that});
+                });
+                this.on(window,'scroll',function(){
+                    throttle(that.update,{context:that})
+                })
+            }
+        }
+
+        new LazyLoad("container");
+    </script>
+</body>
+</html>

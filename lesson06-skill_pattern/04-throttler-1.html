@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>节流测试</title>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>1哈哈哈</li>
+            <li>2哈哈哈</li>
+            <li>3哈哈哈</li>
+            <li>4哈哈哈</li>
+            <li>5哈哈哈</li>
+            <li>6哈哈哈</li>
+            <li>7哈哈哈</li>
+            <li>8哈哈哈</li>
+            <li>9哈哈哈</li>
+            <li>10哈哈哈</li>
+            <li>11哈哈哈</li>
+            <li>12哈哈哈</li>
+            <li>13哈哈哈</li>
+            <li>14哈哈哈</li>
+            <li>15哈哈哈</li>
+            <li>16哈哈哈</li>
+            <li>17哈哈哈</li>
+            <li>18哈哈哈</li>
+            <li>19哈哈哈</li>
+            <li>20哈哈哈</li>
+            <li>21哈哈哈</li>
+            <li>22哈哈哈</li>
+            <li>23哈哈哈</li>
+            <li>24哈哈哈</li>
+            <li>25哈哈哈</li>
+            <li>26哈哈哈</li>
+            <li>27哈哈哈</li>
+            <li>28哈哈哈</li>
+            <li>29哈哈哈</li>
+            <li>30哈哈哈</li>
+            <li>31哈哈哈</li>
+            <li>32哈哈哈</li>
+            <li>33哈哈哈</li>
+            <li>34哈哈哈</li>
+            <li>35哈哈哈</li>
+            <li>36哈哈哈</li>
+            <li>37哈哈哈</li>
+            <li>38哈哈哈</li>
+            <li>39哈哈哈</li>
+            <li>40哈哈哈</li>
+            <li>41哈哈哈</li>
+            <li>42哈哈哈</li>
+            <li>43哈哈哈</li>
+            <li>44哈哈哈</li>
+            <li>45哈哈哈</li>
+            <li>46哈哈哈</li>
+            <li>47哈哈哈</li>
+            <li>48哈哈哈</li>
+            <li>49哈哈哈</li>
+            <li>50哈哈哈</li>
+            <li>51哈哈哈</li>
+            <li>52哈哈哈</li>
+            <li>53哈哈哈</li>
+            <li>54哈哈哈</li>
+            <li>55哈哈哈</li>
+            <li>56哈哈哈</li>
+            <li>57哈哈哈</li>
+            <li>58哈哈哈</li>
+            <li>59哈哈哈</li>
+            <li>60哈哈哈</li>
+            <li>61哈哈哈</li>
+            <li>62哈哈哈</li>
+            <li>63哈哈哈</li>
+            <li>64哈哈哈</li>
+            <li>65哈哈哈</li>
+            <li>66哈哈哈</li>
+            <li>67哈哈哈</li>
+            <li>68哈哈哈</li>
+            <li>69哈哈哈</li>
+            <li>70哈哈哈</li>
+            <li>71哈哈哈</li>
+            <li>72哈哈哈</li>
+            <li>73哈哈哈</li>
+            <li>74哈哈哈</li>
+            <li>75哈哈哈</li>
+            <li>76哈哈哈</li>
+            <li>77哈哈哈</li>
+            <li>78哈哈哈</li>
+            <li>79哈哈哈</li>
+            <li>80哈哈哈</li>
+            <li>81哈哈哈</li>
+            <li>82哈哈哈</li>
+            <li>83哈哈哈</li>
+            <li>84哈哈哈</li>
+            <li>85哈哈哈</li>
+            <li>86哈哈哈</li>
+            <li>87哈哈哈</li>
+            <li>88哈哈哈</li>
+            <li>89哈哈哈</li>
+            <li>90哈哈哈</li>
+            <li>91哈哈哈</li>
+            <li>92哈哈哈</li>
+            <li>93哈哈哈</li>
+            <li>94哈哈哈</li>
+            <li>95哈哈哈</li>
+            <li>96哈哈哈</li>
+            <li>97哈哈哈</li>
+            <li>98哈哈哈</li>
+            <li>99哈哈哈</li>
+            <li>100哈哈哈</li>
+        </ul>
+    </div>
+    <script type="text/JavaScript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/JavaScript" src="https://cdn.staticfile.org/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script type="text/JavaScript" src="./04-throttler-1.js"></script>
+    <script type="text/JavaScript">
+        function moveScroll(){
+            console.log('scroll');
+            var top = $(document).scrollTop();
+            $("#back").animate({top:top+300},400,'easeOutCubic')
+        }
+        $(window).on('scroll',function(){
+            // moveScroll();  //控制台会不断输出‘scroll’
+          throttle(moveScroll);  // 节流模式，每300毫秒以内不管触发多少次滚动只输出一次'scroll'
+        })
+    </script>
+</body>
+</html>

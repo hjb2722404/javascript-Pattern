@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>节流模式--减少网络请求</title>
+</head>
+<body>
+    <div>
+        <button id="btn">点击我发送统计</button>
+    </div>
+    <script type="text/JavaScript" src="./04-throttler-1.js"></script>
+    <script type="text/JavaScript" >
+        // 打包统计对象
+        var LogPack = function(){
+            var data = [], // 请求缓存数组
+                MaxNum = 10, // 请求缓存最大值
+                itemSplitStr = '|', // 统计项统计参数间隔符
+                keyValueSplitStr = '*', // 统计项统计参数键值对间隔符
+                img = new Image();  // 请求触发器，通过图片src属性实现简单的get请求
+            // 发送请求方法
+            function sendLog(){
+                var logStr = '';
+                var fireData = data.splice(0,MaxNum);
+                for(var i=0,len = fireData.length;i<len;i++){
+                    logStr += 'log' + i + '=';
+                    for(var j in fireData[i]){
+                        logStr += j + keyValueSplitStr + fireData[i][j];
+                        logStr += itemSplitStr;
+                    }
+                    logStr = logStr.replace(/\|$/,'') + '&';
+                }
+                logStr += 'logLength = ' + len;
+                img.src = 'a.gif?' + logStr;
+            }
+            // 统计方法
+            return function(param){
+                // 如果无参数则发送统计
+                if(!param){
+                    sendLog();
+                    return;
+                }
+                // 添加统计项
+                data.push(param);
+                // 如果统计项大于请求缓存最大值则发送统计请求包
+                data.length >= MaxNum && sendLog();
+            }
+            
+        }();
+
+        var btn = document.getElementById('btn');
+        // 点击或鼠标不断滑过按钮，观察控制台的网络面板
+        btn.onclick = function(){
+            LogPack({
+                btnId : this.id,
+                context :this.innerHTML,
+                type : 'click'
+            });
+        }
+        btn.onmouseover = function(){
+            LogPack({
+                btnId: this.id,
+                context :this.innerHTML,
+                type: 'mouseover'
+            })
+        }
+    </script>
+</body>
+</html>

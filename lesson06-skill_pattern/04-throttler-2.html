@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>节流器应用-优化浮层</title>
+    <style>
+        #icon {
+            width:150px;
+            position:absolute;
+            right:0px;
+            bottom:100px;
+        }
+        ul{
+            list-style-type:none;
+        }
+        img{
+            width:120px;
+            height:120px;
+            display:none;
+        }
+        .show {
+            display:block;
+        }
+        .arrow {
+            width: 0;
+            height: 0;
+            border-top: 50px solid transparent;
+            /* 左边框的宽 */
+            border-right: 50px solid #2f2f2f;
+            /* 右边框的宽 */
+            border-bottom: 50px solid transparent;
+            /* 下边框的长度|高,以及背景色 */
+            font-size: 0;
+            line-height: 0;
+            position: relative;
+            top:-50px;
+            left:-50px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="icon" class="icon">
+        <ul class="icon">
+            <li class="weixin">微信</li>
+            <li class="weibo">微博</li>
+        </ul>
+        <div class="">
+            <img class="" src="img/weixin.jpeg" alt="">
+            <img src="img/weibo.jpg" alt="">
+            <span class="arrow"><em></em></span>
+        </div>
+    </div>
+    <script type="text/JavaScript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/JavaScript" src="./04-throttler-1.js"></script>
+    <script>
+        function $(id) {
+            return document.getElementById(id)
+        }
+        function $tag(tag,container) {
+            container = container || document;
+            return container.getElementsByTagName(tag);
+        }
+        // 浮层类
+        var Layer = function(id){
+            this.container = $(id);
+            this.layer = $tag('div',this.container)[0];
+            this.lis = $tag('li',this.container);
+            this.imgs = $tag('img',this.container);
+            this.bindEvent();
+        }
+        Layer.prototype ={
+            bindEvent: function() {
+                var that = this;
+                function hideLayer(){
+                    that.layer.className = '';
+                }
+                function showLayer(){
+                    that.layer.className = 'show';
+                }
+                that.on(that.container,'mouseenter',function(){
+                    console.log("enter");
+                    throttle(true,hideLayer);
+                    throttle(showLayer);
+                }).on(that.container,'mouseleave',function(){
+                    console.log("leave");
+                    throttle(hideLayer);
+                    throttle(true,showLayer);
+                });
+                for(var i =0;i < that.lis.length;i++){
+                    that.lis[i].index = i;
+                    that.on(that.lis[i],'mouseenter',function(){
+                        console.log("lienter");
+                        var index = this.index;
+                        for(var i =0;i < that.imgs.length;i++){
+                            that.imgs[i].className = '';
+                        }
+                        that.imgs[index].className = 'show';
+                        that.layer.style.right = -22 + 60 * index + 'px';
+                    });
+                }
+            },
+            on : function(ele,type,fn){
+                ele.addEventListener ? ele.addEventListener(type,fn,false) : ele.attachEvent('on'+type,fn);
+                return this;
+            }
+        }
+
+        var layer = new Layer("icon");
+    </script>
+</body>
+</html>
