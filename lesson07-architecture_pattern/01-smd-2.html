@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"> test </div>
+    <script src="./01-smd-2.js"></script>
+    <script>
+        var a = F.dom('test').html();
+        console.log('a: ', a);
+        F.dom('test').addClass('mytest');
+
+        F.module(['dom',document],function(dom,doc){
+            dom('test').html('   new add');
+            doc.body.style.background = 'red';
+        });
+
+        F.module('dom','string.trim',function(dom,trim){
+            var html = dom('test').html();
+            var str = trim(html);
+            console.log(str);
+        })
+    </script>
+</body>
+</html>
