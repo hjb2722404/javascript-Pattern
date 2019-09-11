@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>widget模板示例</title>
+</head>
+<body>
+    <div id="test"></div>
+    <!-- <div id="demo_tag" class="template">
+        <div id="tag_cloud">
+            {% for(var i=0,len=tag_cloud.length;i<len;i++) {
+                var ctx = tag_cloud[i];%}
+                <a href="#" class="tag_item"
+                {% if(ctx['is_selected']){ %}
+                    selected
+                {% } %}
+                " title="{%=ctx['title']%}">{%=ctx['title']%}</a>
+            {% } %}
+        </div>
+    </div> -->
+    <!-- <textarea id="demo_textarea" class="template">
+        <div id="tag_cloud">
+            {% for(var i=0,len=tag_cloud.length;i<len;i++) {
+                var ctx = tag_cloud[i];%}
+                <a href="#" class="tag_item"
+                {% if(ctx['is_selected']){ %}
+                    selected
+                {% } %}
+                " title="{%=ctx['title']%}">{%=ctx['title']%}</a>
+            {% } %}
+        </div>
+    </textarea> -->
+    <script type="text/template" id="demo_script">
+        <div id="tag_cloud">
+                {% for(var i=0,len=tag_cloud.length;i<len;i++) {
+                    var ctx = tag_cloud[i];%}
+                    <a href="#" class="tag_item"
+                    {% if(ctx['is_selected']){ %}
+                        selected
+                    {% } %}
+                    " title="{%=ctx['title']%}">{%=ctx['title']%}</a>
+                {% } %}
+            </div>
+    </script>
+    <script src="./02-amd-1.js"></script>
+    <!-- <script>
+        var demo_tpl = [
+        '<div id="tag_cloud">',
+            '{% for(var i=0,len=tag_cloud.length;i<len;i++) {',
+                'var ctx = tag_cloud[i];%}',
+                '<a href="#" class="tag_item"',
+                '{% if(ctx["is_selected"]){ %}',
+                    'selected',
+                '{% } %}',
+                '" title="{%=ctx["title"]%}">{%=ctx["title"]%}</a>',
+                '{% } %}',
+        '</div>'
+        ].join('');
+    </script> -->
+    <script>
+        var data = {
+            tag_cloud : [
+                {is_selected:true,title:'111',text:'111'},
+                {is_selected:false,title:'222',text:'222'},
+                {is_selected:null,title:'333',text:'333'},
+                {is_selected:'',title:'444',text:'444'},
+            ]
+        };
+        F.module(['03-widget-1','lib/dom'],function(template,dom){
+            var str = template('demo_script',data);
+            dom.html('test',str);
+        })
+    </script>
+</body>
+</html>

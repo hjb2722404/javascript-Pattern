@@ -83,12 +83,12 @@
             document.getElementsByTagName('head')[0].appendChild(_script);
         };
         /**
-  * 创建或调用模块方法
-  *  @param {*} url 参数为模块url
-  *  @param {*} modDeps 参数为依赖模块 
-  *  @param {*} modCallback 参数为模块主函数
- */
- F.module = function(url,modDeps,modCallback){
+         * 创建或调用模块方法
+         *  @param {*} url 参数为模块url
+         *  @param {*} modDeps 参数为依赖模块 
+         *  @param {*} modCallback 参数为模块主函数
+         */
+        F.module = function(url,modDeps,modCallback){
     // 将参数转化为数组
     var args = [].slice.call(arguments),
         // 获取模块构造函数（参数数组中最后一个参数成员）
@@ -134,7 +134,7 @@
         // 在模块缓存器中矫正该模块，并进行构造函数
         setModule(url,[],callback);
     }
- }
+        }
  })((function(){
      // 创建模块管理器对象F，并保存在全局作用域中
      return window.F = {};
