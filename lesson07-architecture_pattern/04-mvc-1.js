@@ -20,39 +20,39 @@
                      icon :'left_meng.png',
                      title:'喵耳萝莉的千本樱',
                      content:'自古幼女有三好',
-                     img:'left_meng_img.png',
+                     img:'left_meng_img.jpg',
                      href:'http://moe.hao123.com'
                  },
                  {
                      text :'动漫',
-                     icon :'left_meng.png',
+                     icon :'left_comic.png',
                      title:'喵耳萝莉的千本樱',
                      content:'自古幼女有三好',
-                     img:'left_meng_img.png',
+                     img:'left_comic_img.jpeg',
                      href:'http://moe.hao123.com'
                  },
                  {
                      text :'lol直播',
-                     icon :'left_meng.png',
+                     icon :'left_lol.png',
                      title:'喵耳萝莉的千本樱',
                      content:'自古幼女有三好',
-                     img:'left_meng_img.png',
+                     img:'left_lol_img.jpeg',
                      href:'http://moe.hao123.com'
                  },
                  {
                      text :'网络剧',
-                     icon :'left_meng.png',
+                     icon :'left_tv.png',
                      title:'喵耳萝莉的千本樱',
                      content:'自古幼女有三好',
-                     img:'left_meng_img.png',
+                     img:'left_tv_img.jpeg',
                      href:'http://moe.hao123.com'
                  },
                  {
                      text :'热帖',
-                     icon :'left_meng.png',
+                     icon :'left_tie.png',
                      title:'喵耳萝莉的千本樱',
                      content:'自古幼女有三好',
-                     img:'left_meng_img.png',
+                     img:'left_tie_img.jpeg',
                      href:'http://moe.hao123.com'
                  }
              ]
@@ -95,31 +95,32 @@
          var V = {
              createSliderBar : function(){
                  var html = '',
-                     data = M.getData('sliderBar');
+                     data = M.getData('slideBar');
                  if(!data || !data.length){
                      return;
                  }
                  var dom = $.create('div',{
-                     'class': 'sliderbar',
-                     'id': 'sliderbar'
+                     'class': 'slidebar',
+                     'id': 'slidebar'
                  });
                  var tpl = {
                      container:[
-                         '<div class="sliderbar-inner"><ul>{#content#}</ul></div>',
-                         '<a hidefocus href="#" class="sliderbar-close" title="收起"></a>'
+                         '<div class="slidebar-inner"><ul id="content">{#content#}</ul></div>',
+                         '<a hidefocus href="#" class="slidebar-close" title="收起"> 菜单</a>'
                      ].join(''),
                      item:[
                          '<li>',
                             '<a class="icon" href="{#href#}">',
-                                '<img src="img/{#icon#}"/>',
+                                '<img src="common/img/{#icon#}"/>',
                                 '<span>{#text#}</span>',
                             '</a>',
                             '<div class="box">',
                                 '<div>',
                                     '<a class="title" href="{#href#}">{#title#}</a>',
                                     '<a href="{#href#}">{#content#}</a>',
+            
                                 '</div>',
-                                '<a class="image" href="{#href#}"><img src="img/{#img#}"/></a>',
+                                '<a class="image" href="{#href#}"><img src="common/img/{#img#}"/></a>',
                             '</div>',
                          '</li>',
                      ].join(''),
@@ -186,7 +187,7 @@
                                     // 动画主函数
                                     main:function(dom){
                                         // 每一帧改变导航模块容器 left值
-                                        dom.css('left',-50+this.tween*50+'px');
+                                        dom.css('left',-150+this.tween*150+'px');
                                     },
                                     // 动画结束时回调函数
                                     end:function(){
@@ -204,7 +205,7 @@
                                     duration:800,
                                     type:'easeOutQuart',
                                     main:function(dom){
-                                        dom.css('left',this.tween * -50 +'px');
+                                        dom.css('left',this.tween * -150 +'px');
                                     },
                                     end:function(){
                                         $this.addClass('is-close');

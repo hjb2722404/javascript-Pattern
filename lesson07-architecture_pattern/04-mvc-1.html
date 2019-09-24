@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MVC模式</title>
+    <style>
+
+        .slidebar {
+            width:500px;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+
+        .slidebar-inner {
+            position:relative;
+            left:0;
+        }
+
+        ul {
+            width:80px;
+            list-style-type: none;
+            background:#fff;
+        }
+
+        ul li {
+            width:120px;
+            border:1px solid #ccc;
+            display:flex;
+            margin:auto;
+        }
+        li.show {
+            width:500px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .silder-close {
+            position:relative;
+            width:200px;
+            height:100px;
+            background:00fffff;
+        }
+    
+        .icon {
+            width:140px;
+            height:120px;
+            text-align:center;
+        }
+
+        .icon img{
+            width:80px;
+            height:60px;
+            display:block;
+        }
+
+        li.show .box {
+            
+            visibility:visible;
+        }
+
+        li .box{
+            width:300px;
+            height:120px;
+            display:flex;
+            visibility:hidden;
+        }
+
+        .box img{
+            width:80px;
+            height:120px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+
+    <script src="./lib/A.js"></script>
+    <script src="./04-mvc-1.js"></script>
+    <script>
+        
+      
+    </script>
+</body>
+</html>
