@@ -282,4 +282,8 @@
     * 即模型(Model)-视图(View)-管理器(Presenter)
     * View 层不直接引用Model层内的数据，而是通过Presenter层实现对Model层内的数据访问
     * 所有层次的交互都发生在Presenter层中
+* 06 MVVM模式
+    * 即模型（Model）-视图（View）-视图模型（ViewModel）
+    * 为视图层量身定做一套视图模型，并在视图模型中创建属性和方法，为视图层绑定数据并实现交互
+    * 这样做以后 View层可以直接使用HTML来完成。
     

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MVVM模式</title>
+    <style>
+        #content {
+            width:600px;
+            padding:60px;
+            border:1px solid #999;
+        }
+        .ui-slider {
+            border: 1px solid #333;
+            height:20px;
+            margin-bottom:30px;
+            position : relative;
+        }
+        .ui-slider b {
+            position:absolute;
+            right:-50px;
+        }
+        .ui-slider em {
+            position:absolute;
+            top:-30px;
+        }
+        .ui-slider div{
+            background:red;
+            height:20px;
+        }
+        .ui-slider span {
+            height:36px;
+            background:blue;
+            width:20px;
+            z-index:999;
+            position:absolute;
+            top:-8px;
+
+        }
+        .ui-progressbar {
+            border: 1px solid #666;
+            height:20px;
+        }
+        .ui-progressbar div {
+            background:#333;
+            height:20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+            <div class="first" data-bind="type : 'slider', data:demo1"></div>
+            <div class="second" data-bind="type : 'slider', data:demo2"></div>
+            <div class="third" data-bind="type : 'progressbar', data:demo3"></div>
+    </div>
+    
+
+    <script src="./06-mvvm.js"></script>
+</body>
+</html>
