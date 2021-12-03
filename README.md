@@ -3,6 +3,8 @@
 
 整个项目是 《JavaScript 设计模式》 一书的代码实践。
 
+![Alt](https://repobeats.axiom.co/api/embed/1055568f4ffe54f8f3f244c92c5c38040301b619.svg "Repobeats analytics image")
+
 ## 项目特色：
  * 几乎每一行代码都添加了注释；
  * 可以通过注释看到每一个模式发展的过程，一开始是怎样的，存在什么问题，引入了何种思想和原则解决了这些问题，最终形成了某种设计模式
